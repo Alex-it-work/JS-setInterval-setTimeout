@@ -56,7 +56,7 @@ function checkArgProperty(from, to, interval) {
   if (
     !Number.isSafeInteger(from) ||
     !Number.isSafeInteger(to) ||
-    !Number.isSafeInteger(interval) ||
+    !Number.isSafeInteger(interval)
   ) {
     throw new RangeError("Arguments must be a safe integer number");
   }
