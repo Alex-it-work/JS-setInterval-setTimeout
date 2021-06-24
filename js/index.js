@@ -5,27 +5,36 @@
 // - Используя setInterval.
 // - *Используя рекурсивный setTimeout (https://learn.javascript.ru/settimeout-setinterval#rekursivnyy-settimeout).
 
+/**
+ *
+ * @param {number} from
+ * @param {number} to
+ * @param {number} interval
+ */
 function printNumbers(from = 0, to = 0, interval = 0) {
   checkArgProperty(from, to, interval);
   let counter = from;
   const timerId = setInterval(() => {
     console.log(`printNumbers ${counter}`);
-    if (counter === to) {
+    if (counter++ === to) {
       clearInterval(timerId);
     }
-    counter++;
   }, interval);
 }
-
+/**
+ *
+ * @param {number} from
+ * @param {number} to
+ * @param {number} interval
+ */
 function printNumbersRec(from = 0, to = 0, interval = 0) {
   checkArgProperty(from, to, interval);
   let counter = from;
   setTimeout(function go() {
     console.log(`printNumbersRec ${counter}`);
-    if (counter < to) {
+    if (counter++ < to) {
       setTimeout(go, interval);
     }
-    counter++;
   }, interval);
 }
 
@@ -48,9 +57,6 @@ function checkArgProperty(from, to, interval) {
     !Number.isSafeInteger(from) ||
     !Number.isSafeInteger(to) ||
     !Number.isSafeInteger(interval) ||
-    Number.isNaN(from) ||
-    Number.isNaN(to) ||
-    Number.isNaN(interval)
   ) {
     throw new RangeError("Arguments must be a safe integer number");
   }
